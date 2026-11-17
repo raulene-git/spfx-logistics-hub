@@ -3,7 +3,7 @@
   "solution": {
     "name": "spfx-logistics-hub-client-side-solution",
     "id": "beffe93e-18aa-4ea7-a9af-d93b924b206d",
-    "version": "1.4.0.0",
+    "version": "1.4.1.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "developer": {

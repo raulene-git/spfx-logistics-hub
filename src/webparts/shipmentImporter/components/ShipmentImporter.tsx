@@ -3,8 +3,17 @@ import styles from './ShipmentImporter.module.scss';
 import { Section } from '../../../common/components/Section';
 import { safeLink } from '../../../common/links';
 import { readSpreadsheet, type Rows } from '../utils/spreadsheet';
-import { autoMap, FIELDS, templateCsv, validateRows, type ColumnMapping, type FieldKey, type IImportShipment } from '../utils/mapping';
+import { autoMap, FIELDS, parseEta, templateCsv, validateRows, type ColumnMapping, type FieldKey, type IImportShipment } from '../utils/mapping';
 import type { IImportResult, ImportService } from '../services/ImportService';
+
+/** A flagged row's cell as the person would recognise it: Excel dates shown as dates, not day numbers. */
+function previewCell(row: Rows[number], mapping: ColumnMapping, key: FieldKey): string {
+  if (mapping[key] < 0) {
+    return '';
+  }
+  const raw = row[mapping[key]] ?? '';
+  return (key === 'eta' && parseEta(raw)) || String(raw);
+}
 
 export interface IShipmentImporterProps {
   eyebrow?: string;
@@ -205,7 +214,9 @@ const ShipmentImporter: React.FC<IShipmentImporterProps> = ({ eyebrow, title, ac
                   <tr key={r.rowNumber} className={r.shipment ? undefined : styles.badRow}>
                     <td className={styles.mono}>{r.rowNumber}</td>
                     {FIELDS.map((f) => (
-                      <td key={f.key}>{r.shipment ? r.shipment[f.key] : mapping[f.key] >= 0 ? String(dataRows[r.rowNumber - 2][mapping[f.key]] ?? '') : ''}</td>
+                      <td key={f.key} className={f.key === 'eta' ? styles.nowrap : undefined}>
+                        {r.shipment ? r.shipment[f.key] : previewCell(dataRows[r.rowNumber - 2], mapping, f.key)}
+                      </td>
                     ))}
                     <td>{r.shipment ? <span className={styles.okChip}>Ready</span> : <span className={styles.badText}>{r.errors.join('. ')}</span>}</td>
                   </tr>

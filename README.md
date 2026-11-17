@@ -38,6 +38,10 @@ The ops team drops in the weekly Excel or CSV sheet, checks it, and imports it i
 
 ![3. Imported: 1 added, 0 updated, 0 failed, with a button to see it on the dispatch board](docs/images/importer-3-imported.png)
 
+**With a real, messy sheet,** the importer matches everyday headers ("Consignment Ref", "Client", "Haulier", "Due Date"), reads Excel dates, and holds back rows it can't trust, saying why:
+
+![Checking shipments-weekly.xlsx: 9 rows, 6 ready and 3 need fixing, with reasons: customer is empty, status "Lost" isn't recognised, and a duplicate reference with "next week" as the date](docs/images/importer-2-check-messy-sheet.png)
+
 ### IT Help: raise a ticket
 
 Everyone gets four templates. Each asks only what IT needs for that kind of request, and works out the category and priority from the answers.
