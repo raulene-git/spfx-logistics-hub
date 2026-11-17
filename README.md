@@ -14,6 +14,14 @@ The intranet landing page for **Fieldnotes Logistics**, a fictional haulage and 
 
 ## On the page
 
+### Dispatch Board
+
+![The Dispatch Board: a green band with a large "Shipment Tracker" title, five coloured status tiles and a table of ten consignments on cream](docs/images/dispatch-board.png)
+
+| Filter by tile | Search |
+| --- | --- |
+| ![The Exception tile selected, showing 2 of 10 consignments, one flagged LATE in red](docs/images/dispatch-board-filter.png) | ![Searching for CN-10421 narrows the table to 1 of 10](docs/images/dispatch-board-search.png) |
+
 ### Today at a glance and quick links
 
 ![Board Snapshot showing booked, in transit and delivered counts with a navy card for the consignment that needs a look, above a row of quick link tiles](docs/images/board-snapshot-quick-links.png)
@@ -21,6 +29,12 @@ The intranet landing page for **Fieldnotes Logistics**, a fictional haulage and 
 ### News, new starters and dates
 
 ![News web part with three stories and topic thumbnails, next to Say Hello with a new starter and Coming Up with three dates](docs/images/news-say-hello-coming-up.png)
+
+### Self-updating, live in the tenant
+
+| A user created in Entra ID… | …appears in Say Hello by itself | A published news post appears in News |
+| --- | --- | --- |
+| ![Microsoft 365 admin centre, Active users, with one user listed](docs/images/entra-active-users.png) | ![Say Hello reading "One new starter" with the new user, joined today](docs/images/say-hello-entra.png) | ![The News web part showing a real published post with its banner image, dated today](docs/images/news-live-post.png) |
 
 ### Find your way around
 
