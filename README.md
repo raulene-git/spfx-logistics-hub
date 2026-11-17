@@ -28,6 +28,16 @@ The intranet landing page for **Fieldnotes Logistics**, a fictional haulage and 
 | --- | --- |
 | ![The Exception tile selected, showing 2 of 10 consignments, one flagged LATE in red](docs/images/dispatch-board-filter.png) | ![Searching for CN-10421 narrows the table to 1 of 10](docs/images/dispatch-board-search.png) |
 
+### Shipment Importer: from spreadsheet to the board
+
+The ops team drops in the weekly Excel or CSV sheet, checks it, and imports it into the Shipments list that feeds the Dispatch Board.
+
+| 1. Choose a file | 2. Check the data |
+| --- | --- |
+| ![Drop area for the shipments spreadsheet, with a link to download a template](docs/images/importer-1-choose-file.png) | ![Columns matched automatically to Reference, Customer, Origin, Destination, Carrier, Status and ETA, with a preview row marked Ready](docs/images/importer-2-check-data.png) |
+
+![3. Imported: 1 added, 0 updated, 0 failed, with a button to see it on the dispatch board](docs/images/importer-3-imported.png)
+
 ### IT Help: raise a ticket
 
 Everyone gets four templates. Each asks only what IT needs for that kind of request, and works out the category and priority from the answers.
