@@ -1,0 +1,22 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "whichFolder": "subdir",
+    "solutionName": "spfx-logistics-hub",
+    "environment": "spo",
+    "packageManager": "npm",
+    "skipFeatureDeployment": true,
+    "useGulp": false,
+    "componentType": "webpart",
+    "template": "react",
+    "componentName": "ShipmentTracker",
+    "componentDescription": "Tracks consignments and their delivery status",
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "26.13.1",
+    "sdksVersions": {},
+    "version": "1.24.1",
+    "libraryName": "spfx-logistics-hub",
+    "libraryId": "beffe93e-18aa-4ea7-a9af-d93b924b206d",
+    "solutionShortDescription": "spfx-logistics-hub description"
+  }
+}

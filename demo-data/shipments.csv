@@ -1,0 +1,11 @@
+Title,Customer,Origin,Destination,Carrier,Status,ETA
+CN-10421,Northwind Retail,Birmingham DC,Leeds,Road (in-house),In transit,2026-11-18
+CN-10422,Contoso Foods,Bristol Hub,Cardiff,Road (partner),Delivered,2026-11-16
+CN-10423,Fabrikam Garden,Felixstowe Port,Cambridge,Road (partner),Exception,2026-11-17
+CN-10424,Tailspin Toys,Birmingham DC,Manchester,Road (in-house),Booked,2026-11-20
+CN-10425,Northwind Retail,Southampton Port,Reading,Rail freight,In transit,2026-11-19
+CN-10426,Adventure Works,Glasgow Hub,Edinburgh,Road (in-house),Delivered,2026-11-15
+CN-10427,Contoso Foods,Bristol Hub,Exeter,Road (partner),In transit,2026-11-18
+CN-10428,Fabrikam Garden,Birmingham DC,Nottingham,Road (in-house),Booked,2026-11-21
+CN-10429,Tailspin Toys,Felixstowe Port,London,Road (partner),Exception,2026-11-16
+CN-10430,Adventure Works,Glasgow Hub,Aberdeen,Air freight,Delivered,2026-11-14

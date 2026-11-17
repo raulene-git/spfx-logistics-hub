@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "shipment-tracker-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/shipmentTracker/ShipmentTrackerWebPart.js",
+          "manifest": "./src/webparts/shipmentTracker/ShipmentTrackerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ShipmentTrackerWebPartStrings": "lib/webparts/shipmentTracker/loc/{locale}.js"
+  }
+}

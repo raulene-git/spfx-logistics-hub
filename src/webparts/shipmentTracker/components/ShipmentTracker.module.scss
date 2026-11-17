@@ -1,0 +1,118 @@
+$booked: #605e5c;
+$in-transit: #0078d4;
+$delivered: #107c10;
+$exception: #c50f1f;
+$late: #ca5010;
+
+.shipmentTracker {
+  padding: 1em;
+  color: "[theme:bodyText, default: #323130]";
+  color: var(--bodyText);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin-bottom: 1em;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.demoBadge {
+  font-size: 0.75em;
+  padding: 0.2em 0.6em;
+  border: 1px dashed currentColor;
+  border-radius: 4px;
+  opacity: 0.75;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.75em;
+  margin-bottom: 1em;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75em 1em;
+  border-left: 4px solid currentColor;
+  background: rgba(127, 127, 127, 0.08);
+}
+
+.tileValue {
+  font-size: 1.75em;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.tileLabel {
+  font-size: 0.85em;
+  color: "[theme:bodyText, default: #323130]";
+  color: var(--bodyText);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+.search {
+  min-width: 220px;
+  flex: 0 1 280px;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+// Status colours: text colour on summary tiles, background on pills.
+.booked { color: $booked; }
+.inTransit { color: $in-transit; }
+.delivered { color: $delivered; }
+.exception { color: $exception; }
+.lateTile { color: $late; }
+
+.pill.booked { background: $booked; color: #fff; }
+.pill.inTransit { background: $in-transit; color: #fff; }
+.pill.delivered { background: $delivered; color: #fff; }
+.pill.exception { background: $exception; color: #fff; }
+
+.late {
+  color: $late;
+  font-weight: 600;
+}
+
+.lateTag {
+  margin-left: 0.5em;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.empty {
+  padding: 1em 0;
+  opacity: 0.75;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

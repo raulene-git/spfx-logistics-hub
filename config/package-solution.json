@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "spfx-logistics-hub-client-side-solution",
+    "id": "beffe93e-18aa-4ea7-a9af-d93b924b206d",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.24.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "spfx-logistics-hub description"
+      },
+      "longDescription": {
+        "default": "spfx-logistics-hub description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "spfx-logistics-hub Feature",
+        "description": "The feature that activates elements of the spfx-logistics-hub solution.",
+        "id": "6d6b2de9-5d9b-42e7-ae34-820bbdf5f053",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/spfx-logistics-hub.sppkg"
+  }
+}
