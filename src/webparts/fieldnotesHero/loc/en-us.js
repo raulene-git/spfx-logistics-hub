@@ -1,0 +1,31 @@
+define([], function() {
+  return {
+    "PropertyPaneDescription": "A full-width welcome banner. Put it in a full-width section at the top of the page.",
+    "ContentGroupName": "Content",
+    "PrimaryGroupName": "Main button",
+    "SecondaryGroupName": "Section link",
+    "LocationLabel": "Location (shown next to the date)",
+    "ShowGreetingLabel": "Greet by time of day (Good morning, afternoon or evening)",
+    "HeadlineLabel": "Headline",
+    "HeadlineDescription": "Press Enter for a new line.",
+    "AccentWordLabel": "Highlighted ending (shown in yellow italics)",
+    "DescriptionLabel": "Description",
+    "ShowIllustrationLabel": "Show the illustration",
+    "ButtonTextLabel": "Button text",
+    "ButtonUrlLabel": "Button link",
+    "ButtonUrlDescription": "A page, list or site address. Starts with https:// or /",
+    "NewTabLabel": "Open in a new tab",
+    "LinkTextLabel": "Link text",
+    "SectionLabel": "Goes to",
+    "SectionNone": "Nothing (hide the link)",
+    "SectionCustom": "Another page or address…",
+    "SectionNotFound": "(not on this page yet)",
+    "SectionHelp": "Lists the headings and sections on this page. Add a heading in a Text web part, save, then reopen this pane to see it here.",
+    "CustomUrlLabel": "Link address",
+    "InvalidUrl": "Use an address that starts with https://, / or #",
+    "MissingLinkHint": "Add the button link in the web part settings. This note only shows while editing.",
+    "GoodMorning": "Good morning.",
+    "GoodAfternoon": "Good afternoon.",
+    "GoodEvening": "Good evening."
+  }
+});

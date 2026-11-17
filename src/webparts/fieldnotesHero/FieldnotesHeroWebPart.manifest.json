@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "bdffc300-1111-4f93-a9f6-97806860d124",
+  "alias": "FieldnotesHeroWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "SharePointFullPage"],
+  "supportsThemeVariants": false,
+
+  // Lets authors place the hero in a full-width section.
+  "supportsFullBleed": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Advanced
+    "group": { "default": "Advanced" },
+    "title": { "default": "Fieldnotes Hero" },
+    "description": { "default": "A full-width welcome banner with a greeting, a main button and a link to a section of the page" },
+    "officeFabricIconFontName": "Sunny",
+    "properties": {
+      "location": "Leeds depot",
+      "showGreeting": true,
+      "headline": "Here's how today is",
+      "accentWord": "moving.",
+      "description": "Everything the team needs to start the day: what's going out, what's changed and where to find things.",
+      "primaryText": "Open the dispatch board",
+      "primaryUrl": "",
+      "primaryNewTab": false,
+      "secondaryText": "Find your way around",
+      "secondaryTarget": "#discover",
+      "secondaryUrl": "",
+      "showIllustration": true
+    }
+  }]
+}

@@ -9,6 +9,8 @@
 - [x] Demo data (`demo-data/shipments.csv`) and list provisioning script (`scripts/`)
 - [x] Jest tests for the shipment logic
 - [x] GitHub Actions CI building the `.sppkg`
+- [x] Fieldnotes brand logo (`assets/brand/`)
+- [x] Fieldnotes Hero web part: full-width banner, configurable button link, section picker
 
 ## Next
 

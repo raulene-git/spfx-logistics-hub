@@ -9,10 +9,19 @@
           "manifest": "./src/webparts/shipmentTracker/ShipmentTrackerWebPart.manifest.json"
         }
       ]
+    },
+    "fieldnotes-hero-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/fieldnotesHero/FieldnotesHeroWebPart.js",
+          "manifest": "./src/webparts/fieldnotesHero/FieldnotesHeroWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
-    "ShipmentTrackerWebPartStrings": "lib/webparts/shipmentTracker/loc/{locale}.js"
+    "ShipmentTrackerWebPartStrings": "lib/webparts/shipmentTracker/loc/{locale}.js",
+    "FieldnotesHeroWebPartStrings": "lib/webparts/fieldnotesHero/loc/{locale}.js"
   }
 }

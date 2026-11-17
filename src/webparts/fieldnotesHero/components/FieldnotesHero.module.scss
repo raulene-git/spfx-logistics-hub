@@ -1,0 +1,280 @@
+// Fieldnotes brand palette
+$green: #1e5b43;
+$green-tint: #dcebdf;
+$yellow: #ffd957;
+$yellow-deep: #ffd24a;
+$pink-tint: #fbd9d4;
+$cream: #f7f4ec;
+$navy: #1b2440;
+$grey: #4a5468;
+
+$sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+$serif: 'Instrument Serif', Georgia, serif;
+$mono: 'DM Mono', Consolas, monospace;
+
+.hero {
+  // Sizes follow the web part's width, not the window's, so it works in any column.
+  container-type: inline-size;
+  background: $green;
+  color: #fff;
+  font-family: $sans;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+  box-sizing: border-box;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding-top: 16px;
+  font-family: $mono;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $green-tint;
+}
+
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 48px;
+  padding-top: 48px;
+}
+
+.copy {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+
+.headline {
+  margin: 0;
+  font-size: clamp(40px, 6.5cqi, 84px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  color: #fff;
+}
+
+.greeting {
+  display: block;
+}
+
+.headlineText {
+  white-space: pre-line;
+}
+
+.accent {
+  font-family: $serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: $yellow;
+}
+
+.description {
+  margin: 28px 0 0;
+  max-width: 460px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #e3efe6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-top: 32px;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 52px;
+  padding: 0 24px;
+  background: $cream;
+  color: $navy !important;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    background: #fff;
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid $yellow;
+    outline-offset: 3px;
+  }
+}
+
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+  &:hover {
+    border-bottom-color: $yellow;
+  }
+
+  &:focus-visible {
+    outline: 3px solid $yellow;
+    outline-offset: 3px;
+  }
+}
+
+.hint {
+  font-size: 13px;
+  padding: 10px 14px;
+  border: 1px dashed rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+
+// Illustration
+
+.illustration {
+  flex: 0 1 420px;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.monitor {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  padding: 22px 22px 42px;
+  background: $yellow-deep;
+  border-radius: 34px;
+  transform: rotate(-4deg);
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.25), inset 0 -8px 0 rgba(0, 0, 0, 0.08);
+}
+
+.screen {
+  background: $cream;
+  color: $navy;
+  border: 6px solid #3a4a42;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.screenBar {
+  display: flex;
+  justify-content: space-between;
+  font-family: $mono;
+  font-size: 10px;
+  color: $grey;
+  border-bottom: 1px solid #e3ded1;
+  padding-bottom: 8px;
+}
+
+.screenTitle {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 12px 0 10px;
+
+  em {
+    font-family: $serif;
+    font-weight: 400;
+  }
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 6px;
+
+  > div {
+    padding: 8px;
+    font-size: 22px;
+  }
+
+  small {
+    display: block;
+    font-family: $mono;
+    font-size: 9px;
+  }
+}
+
+.tileGreen { background: $green-tint; }
+.tileYellow { background: #fff0b8; }
+.tilePink { background: $pink-tint; }
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid #e3ded1;
+  padding-top: 6px;
+  margin-top: 6px;
+  font-size: 11px;
+}
+
+.pillGreen,
+.pillYellow {
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+
+.pillGreen { background: $green-tint; }
+.pillYellow { background: #fff0b8; }
+
+.badge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  text-align: center;
+  font-family: $serif;
+  font-size: 18px;
+  color: #7a5a00;
+}
+
+.neck {
+  width: 70px;
+  height: 34px;
+  margin-top: -4px;
+  background: #e8b830;
+}
+
+.foot {
+  width: 200px;
+  height: 14px;
+  border-radius: 8px;
+  background: $yellow-deep;
+}
+
+// Narrow columns: stack and let the illustration shrink.
+@container (max-width: 560px) {
+  .inner { padding: 20px 20px 36px; }
+  .body { gap: 32px; padding-top: 32px; }
+  .illustration { min-width: 0; flex-basis: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary { transition: none; }
+  .primary:hover { transform: none; }
+}

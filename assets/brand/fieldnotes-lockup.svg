@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 100" role="img" aria-label="Fieldnotes: Logistics, done thoughtfully">
+  <rect width="100" height="100" fill="#1E5B43"/>
+  <path fill="#F7F4EC" d="M26 24H70V38H67L64 31H46V46H58L60 41H63V58H60L58 53H46V72L53 74V76H26V74L34 72V28L26 26Z"/>
+  <rect x="63" y="68" width="8" height="8" fill="#FFD957"/>
+  <text x="124" y="56" font-family="'DM Sans', 'Segoe UI', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="-0.5" fill="#1B2440">Fieldnotes</text>
+  <text x="125" y="84" font-family="'DM Sans', 'Segoe UI', Arial, sans-serif" font-size="17" fill="#4A5468">Logistics, done thoughtfully</text>
+</svg>
