@@ -1,0 +1,32 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "65cee498-34c5-49de-ba04-52c2ca3df1f7",
+  "alias": "CalloutBandWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "SharePointFullPage"],
+  "supportsThemeVariants": false,
+  "supportsFullBleed": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
+    "title": { "default": "Callout Band" },
+    "description": { "default": "A bold coloured band with a big statement and up to three links" },
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMyAxMHY0aDNsOCA1VjVsLTggNXoiLz48cGF0aCBkPSJNMTggOWE0IDQgMCAwMTAgNk0yMC41IDYuNWE3LjUgNy41IDAgMDEwIDExIi8+PC9nPjxyZWN0IHg9IjMxIiB5PSIzMSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgZmlsbD0iI0ZGRDk1NyIvPjwvc3ZnPg==",
+    "properties": {
+      "colour": "yellow",
+      "eyebrow": "About this intranet",
+      "title": "Fieldnotes is fictional.",
+      "accent": "The work is real.",
+      "body": "Designed and built in SharePoint and SPFx by Raúl Ene.",
+      "links": [
+        { "text": "How this was made", "url": "" },
+        { "text": "GitHub", "url": "https://github.com/raulene-git" },
+        { "text": "", "url": "" }
+      ]
+    }
+  }]
+}

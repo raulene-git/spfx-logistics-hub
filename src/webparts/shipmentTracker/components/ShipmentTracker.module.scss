@@ -1,111 +1,310 @@
-$booked: #605e5c;
-$in-transit: #0078d4;
-$delivered: #107c10;
-$exception: #c50f1f;
-$late: #ca5010;
+@use '../../../common/brand' as *;
 
-.shipmentTracker {
-  padding: 1em;
-  color: "[theme:bodyText, default: #323130]";
-  color: var(--bodyText);
+.board {
+  // Sizes follow the web part's width, not the window's, so it works in any column.
+  container-type: inline-size;
+  width: 100%;
+  background: $cream;
+  color: $navy;
+  font-family: $sans;
 }
 
-.header {
+.inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  box-sizing: border-box;
+}
+
+// ---------- Green band: title, summary, status tiles ----------
+
+.band {
+  background: $green;
+  color: #fff;
+
+  .inner {
+    padding-top: 28px;
+    padding-bottom: 40px;
+  }
+}
+
+.meta {
+  @include label;
   display: flex;
-  align-items: center;
-  gap: 0.75em;
-  margin-bottom: 1em;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding-top: 16px;
+  color: $green-tint;
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 48px;
+  padding: 36px 0 40px;
 }
 
 .title {
   margin: 0;
-  font-size: 1.5em;
+  font-size: clamp(52px, 8.5cqi, 116px);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
   font-weight: 600;
+  color: #fff;
 }
 
-.demoBadge {
-  font-size: 0.75em;
-  padding: 0.2em 0.6em;
-  border: 1px dashed currentColor;
-  border-radius: 4px;
-  opacity: 0.75;
+.accent {
+  position: relative;
+  display: inline-block;
+  font-family: $serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: $yellow;
+
+  // Hand-drawn underline, like the portfolio site's "touch."
+  &::after {
+    content: '';
+    position: absolute;
+    left: 2%;
+    right: 6%;
+    bottom: -0.02em;
+    height: 0.12em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C 40 3, 90 2, 140 6 S 190 10, 198 5' fill='none' stroke='%23ffd957' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M20 12 C 70 7, 120 7, 180 10' fill='none' stroke='%23ffd957' stroke-width='1.6' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E")
+      no-repeat center / 100% 100%;
+  }
 }
 
-.summary {
+.lede {
+  margin: 0 0 0.4em;
+  max-width: 320px;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #e3efe6;
+  border-left: 3px solid $yellow;
+  padding-left: 16px;
+}
+
+.tiles {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-  gap: 0.75em;
-  margin-bottom: 1em;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .tile {
   display: flex;
   flex-direction: column;
-  padding: 0.75em 1em;
-  border-left: 4px solid currentColor;
-  background: rgba(127, 127, 127, 0.08);
+  align-items: flex-start;
+  gap: 4px;
+  min-height: 120px;
+  padding: 18px 20px;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  color: $navy;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  @include focus-ring;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &[aria-pressed='true'] {
+    box-shadow: inset 0 0 0 3px $navy, 0 0 0 3px $yellow;
+  }
 }
 
 .tileValue {
-  font-size: 1.75em;
-  font-weight: 600;
-  line-height: 1.1;
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 
 .tileLabel {
-  font-size: 0.85em;
-  color: "[theme:bodyText, default: #323130]";
-  color: var(--bodyText);
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+// Status colours. Tiles use the strong colour; chips in the table match.
+.tile.booked { background: $cream; }
+.tile.inTransit { background: $yellow; }
+.tile.delivered { background: $sage; }
+.tile.exception { background: $pink; }
+.tile.lateTile { background: $navy; color: #fff; }
+
+// ---------- Body: toolbar and table ----------
+
+.body {
+  padding-top: 28px;
+  padding-bottom: 40px;
 }
 
 .toolbar {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 0.5em;
+  gap: 16px 24px;
+  margin-bottom: 16px;
+}
+
+.showing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.showingLabel {
+  @include label;
+  font-weight: 400;
+  color: $grey;
+}
+
+.clear {
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid $navy;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: $navy;
+  cursor: pointer;
+  @include focus-ring($green);
 }
 
 .search {
-  min-width: 220px;
-  flex: 0 1 280px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 1 320px;
+  min-width: 0;
+  border-bottom: 2px solid $navy;
+
+  label {
+    @include label;
+    font-size: 11px;
+    color: $grey;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    min-height: 40px;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 15px;
+    color: $navy;
+    outline: none;
+  }
+
+  &:focus-within {
+    border-bottom-color: $green;
+  }
 }
 
-.pill {
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  font-size: 15px;
+
+  th {
+    @include label;
+    font-size: 11px;
+    font-weight: 400;
+    text-align: left;
+    color: $grey;
+    padding: 10px 16px 10px 0;
+    border-bottom: 2px solid $navy;
+  }
+
+  td {
+    padding: 14px 16px 14px 0;
+    border-bottom: 1px solid $line;
+    vertical-align: middle;
+  }
+
+  tbody tr:hover td {
+    background: $paper;
+  }
+}
+
+.ref {
+  font-family: $mono;
+  font-size: 13px;
+}
+
+.arrow {
+  padding: 0 6px;
+  font-weight: 700;
+  color: $green;
+}
+
+.chip {
   display: inline-block;
-  padding: 0.1em 0.6em;
-  border-radius: 999px;
-  font-size: 0.8em;
-  font-weight: 600;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: $navy;
 }
 
-// Status colours: text colour on summary tiles, background on pills.
-.booked { color: $booked; }
-.inTransit { color: $in-transit; }
-.delivered { color: $delivered; }
-.exception { color: $exception; }
-.lateTile { color: $late; }
-
-.pill.booked { background: $booked; color: #fff; }
-.pill.inTransit { background: $in-transit; color: #fff; }
-.pill.delivered { background: $delivered; color: #fff; }
-.pill.exception { background: $exception; color: #fff; }
+.chip.booked { background: #fff; box-shadow: inset 0 0 0 1px $navy; }
+.chip.inTransit { background: $yellow; }
+.chip.delivered { background: $green; color: #fff; }
+.chip.exception { background: $pink; }
 
 .late {
-  color: $late;
-  font-weight: 600;
+  color: $alert;
+  font-weight: 700;
 }
 
 .lateTag {
-  margin-left: 0.5em;
-  font-size: 0.75em;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  @include label;
+  margin-left: 8px;
+  padding: 1px 5px;
+  font-size: 10px;
+  border: 1px solid $alert;
 }
 
 .empty {
-  padding: 1em 0;
-  opacity: 0.75;
+  padding: 20px 0;
+  color: $grey;
+}
+
+.error {
+  padding: 14px 16px;
+  background: $pink-tint;
+  border-left: 4px solid $alert;
+}
+
+.foot {
+  @include label;
+  margin: 16px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: $grey;
 }
 
 .srOnly {
@@ -115,4 +314,22 @@ $late: #ca5010;
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+// ---------- Narrower columns ----------
+
+@container (max-width: 900px) {
+  .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@container (max-width: 560px) {
+  .inner { padding-left: 20px; padding-right: 20px; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile { min-height: 96px; }
+  .tileValue { font-size: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile { transition: none; }
+  .tile:hover { transform: none; }
 }

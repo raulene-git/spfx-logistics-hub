@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "4e4598ec-1d25-4d29-b5f4-b35438e21e5e",
+  "alias": "ComingUpWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "SharePointFullPage", "TeamsTab"],
+  "supportsThemeVariants": false,
+
+  "preconfiguredEntries": [{
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
+    "title": { "default": "Coming Up" },
+    "description": { "default": "Upcoming dates with a big day number, title, time and place" },
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB4PSIzIiB5PSI1IiB3aWR0aD0iMTgiIGhlaWdodD0iMTYiLz48cGF0aCBkPSJNMyAxMGgxOE04IDN2NE0xNiAzdjQiLz48cGF0aCBkPSJNOCAxNGgzdjNIOHoiLz48L2c+PHJlY3QgeD0iMzEiIHk9IjMxIiB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjRkZEOTU3Ii8+PC9zdmc+",
+    "properties": {
+      "eyebrow": "04 / Coming up",
+      "title": "",
+      "accent": "",
+      "anchor": "coming-up",
+      "max": 3,
+      "slots": 3,
+      "hidePast": true,
+      "events": [
+        { "title": "Peak season briefing", "date": "2026-11-19", "detail": "09:00 · Main office and Teams", "url": "" },
+        { "title": "Forklift refresher", "date": "2026-11-24", "detail": "13:30 · Bay 4", "url": "" },
+        { "title": "Winter social", "date": "2026-12-05", "detail": "18:00 · The Corn Exchange", "url": "" }
+      ]
+    }
+  }]
+}

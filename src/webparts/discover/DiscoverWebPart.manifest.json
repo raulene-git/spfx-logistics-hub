@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "94604a0c-975e-4d27-a764-aa20e732497e",
+  "alias": "DiscoverWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "SharePointFullPage"],
+  "supportsThemeVariants": false,
+  "supportsFullBleed": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
+    "title": { "default": "Discover" },
+    "description": { "default": "Colour cards for the sites in your intranet, picked by hand or read from the hub" },
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSI5Ii8+PHBhdGggZD0iTTE1LjUgOC41bC0yIDUtNSAyIDItNXoiLz48L2c+PHJlY3QgeD0iMzEiIHk9IjMxIiB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjRkZEOTU3Ii8+PC9zdmc+",
+    "properties": {
+      "eyebrow": "05 / Discover",
+      "title": "Find your way around.",
+      "accent": "",
+      "anchor": "discover",
+      "linkText": "",
+      "linkUrl": "",
+      "source": "manual",
+      "count": 4,
+      "cards": [
+        { "title": "Operations", "accent": "", "description": "Dispatch, shipments and the daily plan.", "url": "", "colour": "green", "comingSoon": false },
+        { "title": "People &", "accent": "Culture", "description": "Leave, wellbeing and who's who.", "url": "", "colour": "pink", "comingSoon": false },
+        { "title": "Projects", "accent": "", "description": "What we're improving, and why.", "url": "", "colour": "yellow", "comingSoon": false },
+        { "title": "The", "accent": "Workbench", "description": "Every web part on this intranet, and how it was made.", "url": "", "colour": "white", "comingSoon": true }
+      ]
+    }
+  }]
+}

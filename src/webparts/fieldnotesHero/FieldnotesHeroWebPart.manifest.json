@@ -13,11 +13,11 @@
   "supportsFullBleed": true,
 
   "preconfiguredEntries": [{
-    "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Advanced
-    "group": { "default": "Advanced" },
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
     "title": { "default": "Fieldnotes Hero" },
     "description": { "default": "A full-width welcome banner with a greeting, a main button and a link to a section of the page" },
-    "officeFabricIconFontName": "Sunny",
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSI0Ii8+PHBhdGggZD0iTTEyIDJ2M00xMiAxOXYzTTIgMTJoM00xOSAxMmgzTTQuOSA0LjlsMi4xIDIuMU0xNyAxN2wyLjEgMi4xTTQuOSAxOS4xTDcgMTdNMTcgN2wyLjEtMi4xIi8+PC9nPjxyZWN0IHg9IjMxIiB5PSIzMSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgZmlsbD0iI0ZGRDk1NyIvPjwvc3ZnPg==",
     "properties": {
       "location": "Leeds depot",
       "showGreeting": true,

@@ -1,10 +1,11 @@
 define([], function() {
   return {
-    "PropertyPaneDescription": "Track consignments and their delivery status.",
+    "PropertyPaneDescription": "The dispatch board: every consignment and its status. Put it in a full-width section to make it the page's main feature.",
     "DisplayGroupName": "Display",
     "DataGroupName": "Data",
     "TitleFieldLabel": "Title",
-    "DefaultTitle": "Shipment Tracker",
+    "AccentWordLabel": "Highlighted ending (shown in yellow italics)",
+    "DefaultTitle": "Dispatch",
     "DataSourceFieldLabel": "Data source",
     "DataSourceDemo": "Demo data (built in)",
     "DataSourceList": "SharePoint list",

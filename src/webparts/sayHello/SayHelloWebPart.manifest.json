@@ -1,0 +1,27 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "d982400e-6e29-4385-a2e6-7c711a1882f4",
+  "alias": "SayHelloWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "SharePointFullPage", "TeamsTab"],
+  "supportsThemeVariants": false,
+
+  "preconfiguredEntries": [{
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
+    "title": { "default": "Say Hello" },
+    "description": { "default": "Welcomes new starters, picked up from Entra ID by themselves" },
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSI5IiBjeT0iOCIgcj0iMy41Ii8+PHBhdGggZD0iTTMgMjBjMC0zLjUgMi43LTYgNi02czYgMi41IDYgNk0xOCA4djZNMTUgMTFoNiIvPjwvZz48cmVjdCB4PSIzMSIgeT0iMzEiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNGRkQ5NTciLz48L3N2Zz4=",
+    "properties": {
+      "eyebrow": "Say hello to",
+      "source": "demo",
+      "days": 30,
+      "max": 5,
+      "department": "",
+      "showList": true
+    }
+  }]
+}

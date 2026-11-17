@@ -1,0 +1,99 @@
+@use '../../../common/brand' as *;
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 240px;
+  height: 100%;
+  padding: 28px;
+  box-sizing: border-box;
+  color: $navy !important;
+  text-decoration: none !important;
+  transition: transform 0.15s ease;
+}
+
+a.card {
+  @include focus-ring($navy);
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &:hover .arrow {
+    transform: translate(3px, -3px);
+  }
+}
+
+.green { background: $green; color: #fff !important; }
+.yellow { background: $yellow; }
+.pink { background: $pink; }
+.sage { background: $sage; }
+.navy { background: $navy; color: #fff !important; }
+.white { background: #fff; box-shadow: inset 0 0 0 1px #d9d3c3; }
+
+.green .accent,
+.navy .accent {
+  color: $yellow;
+}
+
+a.green,
+a.navy {
+  @include focus-ring($yellow);
+}
+
+.label {
+  @include label;
+  font-size: 11px;
+}
+
+.cardTitle {
+  display: block;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.accent {
+  font-family: $serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.description {
+  display: block;
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.45;
+  opacity: 0.9;
+}
+
+.arrow {
+  font-size: 22px;
+  transition: transform 0.15s ease;
+}
+
+.unlinked {
+  outline: 2px dashed $grey;
+  outline-offset: -8px;
+}
+
+.loading {
+  color: $grey;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .arrow { transition: none; }
+  a.card:hover, a.card:hover .arrow { transform: none; }
+}

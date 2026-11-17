@@ -3,7 +3,7 @@
   "solution": {
     "name": "spfx-logistics-hub-client-side-solution",
     "id": "beffe93e-18aa-4ea7-a9af-d93b924b206d",
-    "version": "1.0.0.0",
+    "version": "1.3.1.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "developer": {
@@ -30,6 +30,12 @@
         "description": "The feature that activates elements of the spfx-logistics-hub solution.",
         "id": "6d6b2de9-5d9b-42e7-ae34-820bbdf5f053",
         "version": "1.0.0.0"
+      }
+    ],
+    "webApiPermissionRequests": [
+      {
+        "resource": "Microsoft Graph",
+        "scope": "User.Read.All"
       }
     ]
   },

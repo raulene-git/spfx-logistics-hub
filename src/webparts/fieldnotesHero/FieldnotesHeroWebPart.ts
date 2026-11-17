@@ -15,10 +15,10 @@ import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import * as strings from 'FieldnotesHeroWebPartStrings';
 import FieldnotesHero from './components/FieldnotesHero';
 import type { IFieldnotesHeroProps } from './components/IFieldnotesHeroProps';
+import { formatLongDate, loadBrandFonts } from '../../common/loadBrandFonts';
 import {
   CUSTOM_TARGET,
   findPageSections,
-  formatHeroDate,
   getDayPart,
   isSafeLink,
   resolveSectionLink,
@@ -41,16 +41,12 @@ export interface IFieldnotesHeroWebPartProps {
   showIllustration: boolean;
 }
 
-const FONT_LINK_ID = 'fieldnotes-fonts';
-const FONT_URL =
-  'https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Serif:ital@0;1&display=swap';
-
 export default class FieldnotesHeroWebPart extends BaseClientSideWebPart<IFieldnotesHeroWebPartProps> {
   private _root: Root | undefined;
   private _sections: IPageSection[] = [];
 
   protected onInit(): Promise<void> {
-    this._loadFonts();
+    loadBrandFonts();
     return super.onInit();
   }
 
@@ -60,7 +56,7 @@ export default class FieldnotesHeroWebPart extends BaseClientSideWebPart<IFieldn
     const greetings = { morning: strings.GoodMorning, afternoon: strings.GoodAfternoon, evening: strings.GoodEvening };
 
     const element: React.ReactElement<IFieldnotesHeroProps> = React.createElement(FieldnotesHero, {
-      dateText: formatHeroDate(now, this.context.pageContext.cultureInfo.currentUICultureName || 'en-GB'),
+      dateText: formatLongDate(now, this.context.pageContext.cultureInfo.currentUICultureName || 'en-GB'),
       location: p.location || '',
       siteTitle: this.context.pageContext.web.title,
       greeting: p.showGreeting ? greetings[getDayPart(now)] : '',
@@ -81,18 +77,6 @@ export default class FieldnotesHeroWebPart extends BaseClientSideWebPart<IFieldn
       this._root = createRoot(this.domElement);
     }
     this._root.render(element);
-  }
-
-  /** The fonts the Fieldnotes brand uses, added once per page. Falls back to Segoe UI if blocked. */
-  private _loadFonts(): void {
-    if (document.getElementById(FONT_LINK_ID)) {
-      return;
-    }
-    const link = document.createElement('link');
-    link.id = FONT_LINK_ID;
-    link.rel = 'stylesheet';
-    link.href = FONT_URL;
-    document.head.appendChild(link);
   }
 
   /** Re-scan the page each time the pane opens, so new headings show up in "Goes to". */

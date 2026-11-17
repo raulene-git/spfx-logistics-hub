@@ -1,0 +1,74 @@
+@use '../../../common/brand' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 22px 24px;
+  background: #fff;
+  border-top: 4px solid $green;
+}
+
+.booked { border-top-color: $navy; }
+.inTransit { border-top-color: $yellow; }
+.delivered { border-top-color: $green; }
+
+.label {
+  font-size: 14px;
+  color: $grey;
+}
+
+.value {
+  font-size: 56px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.muted {
+  font-size: 13px;
+  color: $grey;
+}
+
+.alert {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 22px 24px;
+  background: $navy;
+  color: #fff;
+}
+
+.alertLabel {
+  font-size: 14px;
+  color: #c9d0e0;
+}
+
+.alertText {
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.alertLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  color: $yellow !important;
+  text-decoration: none !important;
+  @include focus-ring;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+}

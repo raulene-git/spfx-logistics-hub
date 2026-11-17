@@ -1,0 +1,87 @@
+@use '../../../common/brand' as *;
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 24px 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: $navy !important;
+  text-decoration: none !important;
+}
+
+a.card {
+  @include focus-ring($green);
+
+  &:hover .headline {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  &:hover .image,
+  &:hover .block {
+    transform: scale(1.02);
+  }
+}
+
+.image,
+.block {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  transition: transform 0.2s ease;
+}
+
+.image {
+  object-fit: cover;
+  background: $line;
+}
+
+.block {
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  box-sizing: border-box;
+  font-family: $serif;
+  font-style: italic;
+  font-size: clamp(30px, 4cqi, 44px);
+  line-height: 1;
+}
+
+.pink { background: $pink; color: #5a1f1a; }
+.yellow { background: $yellow; color: #5c4300; }
+.sage { background: $sage; color: #173f2f; }
+
+.meta {
+  @include label;
+  font-size: 11px;
+  color: $grey;
+}
+
+.headline {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.description {
+  font-size: 15px;
+  line-height: 1.5;
+  color: $grey;
+}
+
+.loading {
+  color: $grey;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image, .block { transition: none; }
+}

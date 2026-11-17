@@ -1,16 +1,4 @@
-// Fieldnotes brand palette
-$green: #1e5b43;
-$green-tint: #dcebdf;
-$yellow: #ffd957;
-$yellow-deep: #ffd24a;
-$pink-tint: #fbd9d4;
-$cream: #f7f4ec;
-$navy: #1b2440;
-$grey: #4a5468;
-
-$sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
-$serif: 'Instrument Serif', Georgia, serif;
-$mono: 'DM Mono', Consolas, monospace;
+@use '../../../common/brand' as *;
 
 .hero {
   // Sizes follow the web part's width, not the window's, so it works in any column.

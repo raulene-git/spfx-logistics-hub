@@ -17,6 +17,62 @@
           "manifest": "./src/webparts/fieldnotesHero/FieldnotesHeroWebPart.manifest.json"
         }
       ]
+    },
+    "discover-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/discover/DiscoverWebPart.js",
+          "manifest": "./src/webparts/discover/DiscoverWebPart.manifest.json"
+        }
+      ]
+    },
+    "callout-band-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/calloutBand/CalloutBandWebPart.js",
+          "manifest": "./src/webparts/calloutBand/CalloutBandWebPart.manifest.json"
+        }
+      ]
+    },
+    "quick-links-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/quickLinks/QuickLinksWebPart.js",
+          "manifest": "./src/webparts/quickLinks/QuickLinksWebPart.manifest.json"
+        }
+      ]
+    },
+    "news-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/news/NewsWebPart.js",
+          "manifest": "./src/webparts/news/NewsWebPart.manifest.json"
+        }
+      ]
+    },
+    "coming-up-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/comingUp/ComingUpWebPart.js",
+          "manifest": "./src/webparts/comingUp/ComingUpWebPart.manifest.json"
+        }
+      ]
+    },
+    "say-hello-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/sayHello/SayHelloWebPart.js",
+          "manifest": "./src/webparts/sayHello/SayHelloWebPart.manifest.json"
+        }
+      ]
+    },
+    "shipment-importer-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/shipmentImporter/ShipmentImporterWebPart.js",
+          "manifest": "./src/webparts/shipmentImporter/ShipmentImporterWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},

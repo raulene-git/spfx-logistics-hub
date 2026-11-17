@@ -1,0 +1,110 @@
+@use '../../../common/brand' as *;
+
+.band {
+  container-type: inline-size;
+  width: 100%;
+  font-family: $sans;
+  color: $navy;
+}
+
+.yellow { background: $yellow; }
+.pink { background: $pink; }
+.green { background: $green; color: #fff; }
+.navy { background: $navy; color: #fff; }
+
+.inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 56px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px 48px;
+}
+
+.copy {
+  flex: 1 1 520px;
+  min-width: 0;
+}
+
+.eyebrow {
+  @include label;
+  display: block;
+  opacity: 0.8;
+}
+
+.title {
+  margin: 10px 0 0;
+  font-size: clamp(30px, 5cqi, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+.accent {
+  font-family: $serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.green .accent,
+.navy .accent {
+  color: $yellow;
+}
+
+.body {
+  margin: 14px 0 0;
+  max-width: 560px;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+}
+
+.link,
+.primaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+  color: inherit !important;
+  text-decoration: none !important;
+  @include focus-ring($navy);
+}
+
+.primaryLink {
+  border-bottom: 2px solid currentColor;
+}
+
+.link:hover,
+.primaryLink:hover {
+  opacity: 0.75;
+}
+
+.green .link,
+.green .primaryLink,
+.navy .link,
+.navy .primaryLink {
+  @include focus-ring($yellow);
+}
+
+.hint {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 13px;
+  padding: 10px 14px;
+  border: 1px dashed currentColor;
+}
+
+@container (max-width: 560px) {
+  .inner { padding: 40px 20px; }
+}

@@ -3,6 +3,7 @@ declare interface IShipmentTrackerWebPartStrings {
   DisplayGroupName: string;
   DataGroupName: string;
   TitleFieldLabel: string;
+  AccentWordLabel: string;
   DefaultTitle: string;
   DataSourceFieldLabel: string;
   DataSourceDemo: string;

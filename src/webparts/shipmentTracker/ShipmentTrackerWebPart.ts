@@ -1,47 +1,60 @@
 import * as React from 'react';
-import { createRoot, type Root } from 'react-dom/client';
-import { Version } from '@microsoft/sp-core-library';
 import {
   type IPropertyPaneConfiguration,
+  type IPropertyPaneField,
   PropertyPaneDropdown,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
-import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-import type { IReadonlyTheme } from '@microsoft/sp-component-base';
 
 import * as strings from 'ShipmentTrackerWebPartStrings';
+import { FieldnotesWebPart } from '../../common/FieldnotesWebPart';
+import { formatLongDate } from '../../common/loadBrandFonts';
+import { linkField } from '../../common/propertyPane';
+import { safeLink } from '../../common/links';
 import ShipmentTracker from './components/ShipmentTracker';
-import type { IShipmentTrackerProps } from './components/IShipmentTrackerProps';
+import BoardSnapshot from './components/BoardSnapshot';
 import type { IShipmentService } from './services/IShipmentService';
 import { MockShipmentService } from './services/MockShipmentService';
 import { SharePointShipmentService } from './services/SharePointShipmentService';
 
 export type DataSource = 'demo' | 'list';
+/** "board" is the full Dispatch Board; "snapshot" is the small "Today at a glance" version. */
+export type BoardLayout = 'board' | 'snapshot';
 
 export interface IShipmentTrackerWebPartProps {
+  layout: BoardLayout;
+  eyebrow: string;
   title: string;
+  accentWord: string;
+  boardUrl: string;
   dataSource: DataSource;
   listTitle: string;
 }
 
-export default class ShipmentTrackerWebPart extends BaseClientSideWebPart<IShipmentTrackerWebPartProps> {
-  private _isDarkTheme: boolean = false;
-  private _root: Root | undefined;
+export default class ShipmentTrackerWebPart extends FieldnotesWebPart<IShipmentTrackerWebPartProps> {
   private _service: IShipmentService | undefined;
   private _serviceKey: string = '';
 
-  public render(): void {
-    const element: React.ReactElement<IShipmentTrackerProps> = React.createElement(ShipmentTracker, {
-      title: this.properties.title || strings.DefaultTitle,
-      service: this._getService(),
-      isDemo: this._usesDemoData(),
-      isDarkTheme: this._isDarkTheme
-    });
-
-    if (!this._root) {
-      this._root = createRoot(this.domElement);
+  protected createElement(): React.ReactElement {
+    const p = this.properties;
+    if (p.layout === 'snapshot') {
+      return React.createElement(BoardSnapshot, {
+        eyebrow: p.eyebrow,
+        title: p.title || 'The day so far.',
+        accent: p.accentWord || '',
+        boardUrl: safeLink(p.boardUrl),
+        service: this._getService(),
+        isDemo: this._usesDemoData()
+      });
     }
-    this._root.render(element);
+    return React.createElement(ShipmentTracker, {
+      title: p.title || strings.DefaultTitle,
+      accentWord: p.accentWord || '',
+      siteTitle: this.context.pageContext.web.title,
+      dateText: formatLongDate(new Date(), this.locale),
+      service: this._getService(),
+      isDemo: this._usesDemoData()
+    });
   }
 
   private _usesDemoData(): boolean {
@@ -55,43 +68,40 @@ export default class ShipmentTrackerWebPart extends BaseClientSideWebPart<IShipm
       this._serviceKey = key;
       this._service = this._usesDemoData()
         ? new MockShipmentService()
-        : new SharePointShipmentService(this.context.spHttpClient, this.context.pageContext.web.absoluteUrl, this.properties.listTitle);
+        : new SharePointShipmentService(this.context.spHttpClient, this.webUrl, this.properties.listTitle);
     }
     return this._service;
   }
 
-  protected onThemeChanged(currentTheme: IReadonlyTheme | undefined): void {
-    if (!currentTheme) {
-      return;
+  protected onPropertyPaneFieldChanged(path: string, oldValue: unknown, newValue: unknown): void {
+    super.onPropertyPaneFieldChanged(path, oldValue, newValue);
+    if (path === 'layout' || path === 'dataSource') {
+      this.context.propertyPane.refresh();
     }
-    this._isDarkTheme = !!currentTheme.isInverted;
-    const { semanticColors } = currentTheme;
-    if (semanticColors) {
-      this.domElement.style.setProperty('--bodyText', semanticColors.bodyText || null);
-      this.domElement.style.setProperty('--link', semanticColors.link || null);
-      this.domElement.style.setProperty('--linkHovered', semanticColors.linkHovered || null);
-    }
-  }
-
-  protected onDispose(): void {
-    this._root?.unmount();
-    this._root = undefined;
-  }
-
-  protected get dataVersion(): Version {
-    return Version.parse('1.0');
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+    const snapshot = this.properties.layout === 'snapshot';
+    const displayFields: IPropertyPaneField<unknown>[] = [
+      PropertyPaneDropdown('layout', {
+        label: 'Layout',
+        options: [
+          { key: 'board', text: 'Full dispatch board' },
+          { key: 'snapshot', text: 'Snapshot: today at a glance' }
+        ]
+      }),
+      ...(snapshot ? [PropertyPaneTextField('eyebrow', { label: 'Label above the title' })] : []),
+      PropertyPaneTextField('title', { label: strings.TitleFieldLabel }),
+      PropertyPaneTextField('accentWord', { label: strings.AccentWordLabel }),
+      ...(snapshot ? [linkField('boardUrl', 'Link to the full dispatch board')] : [])
+    ];
+
     return {
       pages: [
         {
           header: { description: strings.PropertyPaneDescription },
           groups: [
-            {
-              groupName: strings.DisplayGroupName,
-              groupFields: [PropertyPaneTextField('title', { label: strings.TitleFieldLabel })]
-            },
+            { groupName: strings.DisplayGroupName, groupFields: displayFields },
             {
               groupName: strings.DataGroupName,
               groupFields: [

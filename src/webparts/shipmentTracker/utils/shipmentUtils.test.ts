@@ -1,4 +1,4 @@
-import { countByStatus, filterShipments, isLate } from './shipmentUtils';
+import { countByStatus, filterShipments, isLate, summariseBoard } from './shipmentUtils';
 import demoShipments from '../services/demoShipments';
 import type { IShipment } from '../models/IShipment';
 
@@ -16,6 +16,27 @@ describe('filterShipments', () => {
   it('matches the query case-insensitively across fields', () => {
     expect(filterShipments(demoShipments, 'All', 'northwind').every((s) => s.customer === 'Northwind Retail')).toBe(true);
     expect(filterShipments(demoShipments, 'All', 'cn-10423').map((s) => s.reference)).toEqual(['CN-10423']);
+  });
+
+  it('filters to shipments running late', () => {
+    const today = new Date('2026-11-18T12:00:00Z');
+    const result = filterShipments(demoShipments, 'Late', '', today);
+    expect(result.length).toBeGreaterThan(0);
+    expect(result.every((s) => isLate(s, today))).toBe(true);
+  });
+});
+
+describe('summariseBoard', () => {
+  it('counts exceptions and late shipments once each', () => {
+    const base: IShipment = demoShipments[0];
+    const today = new Date('2026-11-18T12:00:00Z');
+    const items: IShipment[] = [
+      { ...base, id: 1, status: 'Exception', eta: '2026-11-10' }, // exception and late: counted once
+      { ...base, id: 2, status: 'In transit', eta: '2026-11-17' }, // late
+      { ...base, id: 3, status: 'Booked', eta: '2026-11-25' }, // fine
+      { ...base, id: 4, status: 'Delivered', eta: '2026-11-01' } // fine
+    ];
+    expect(summariseBoard(items, today)).toEqual({ total: 4, late: 2, needsLook: 2 });
   });
 });
 

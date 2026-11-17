@@ -1,0 +1,32 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "7ef5e945-7cda-4423-94c8-65125bb58db2",
+  "alias": "NewsWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "SharePointFullPage", "TeamsTab"],
+  "supportsThemeVariants": false,
+  "supportsFullBleed": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
+    "title": { "default": "Fieldnotes News" },
+    "description": { "default": "The latest news posts with thumbnails and dates. New posts appear automatically" },
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB4PSIzIiB5PSI1IiB3aWR0aD0iMTgiIGhlaWdodD0iMTQiLz48cGF0aCBkPSJNNyA5aDR2M0g3ek0xNCA5aDNNMTQgMTJoM003IDE2aDEwIi8+PC9nPjxyZWN0IHg9IjMxIiB5PSIzMSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgZmlsbD0iI0ZGRDk1NyIvPjwvc3ZnPg==",
+    "properties": {
+      "eyebrow": "03 / News",
+      "title": "What's new at",
+      "accent": "Fieldnotes.",
+      "anchor": "news",
+      "siteUrl": "",
+      "allNewsUrl": "",
+      "count": 3,
+      "showThumbnails": true,
+      "showDescription": false,
+      "showDemoWhenEmpty": true
+    }
+  }]
+}

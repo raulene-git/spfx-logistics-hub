@@ -1,4 +1,6 @@
-export type DayPart = 'morning' | 'afternoon' | 'evening';
+import { isSafeLink } from '../../../common/links';
+
+export type DayPart ='morning' | 'afternoon' | 'evening';
 
 export function getDayPart(now: Date): DayPart {
   const hour = now.getHours();
@@ -8,25 +10,7 @@ export function getDayPart(now: Date): DayPart {
   return hour < 18 ? 'afternoon' : 'evening';
 }
 
-/** e.g. "Tuesday 17 November". */
-export function formatHeroDate(now: Date, locale: string = 'en-GB'): string {
-  return now.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long' });
-}
-
-/** Only https, http, site-relative and in-page links. Blocks javascript: and similar. */
-export function isSafeLink(value: string): boolean {
-  const v = (value || '').trim();
-  if (!v) {
-    return false;
-  }
-  if (v.charAt(0) === '#') {
-    return v.length > 1;
-  }
-  if (v.charAt(0) === '/') {
-    return v.charAt(1) !== '/';
-  }
-  return /^https?:\/\/\S+$/i.test(v);
-}
+export { isSafeLink };
 
 export const CUSTOM_TARGET = 'custom';
 

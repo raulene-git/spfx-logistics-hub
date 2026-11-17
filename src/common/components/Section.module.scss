@@ -1,0 +1,84 @@
+@use '../brand' as *;
+
+.section {
+  container-type: inline-size;
+  font-family: $sans;
+  color: $navy;
+  width: 100%;
+}
+
+.inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 40px 32px;
+  box-sizing: border-box;
+}
+
+// Used when the web part sits in a column: let SharePoint's own spacing do the work.
+.compact .inner {
+  padding: 8px 0;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  @include label;
+  display: block;
+  color: $grey;
+}
+
+.title {
+  margin: 8px 0 0;
+  font-size: clamp(30px, 5cqi, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  color: $navy;
+}
+
+.accent {
+  font-family: $serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.headerLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  color: $navy !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid $navy;
+  @include focus-ring($green);
+
+  &:hover {
+    color: $green !important;
+    border-bottom-color: $green;
+  }
+}
+
+.placeholder {
+  padding: 20px;
+  border: 1px dashed $grey;
+  color: $grey;
+  font-size: 14px;
+}
+
+.demoNote {
+  @include label;
+  margin: 14px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: $grey;
+}

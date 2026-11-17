@@ -13,16 +13,41 @@
   // https://support.office.com/en-us/article/Turn-scripting-capabilities-on-or-off-1f2c515f-5d7e-448a-9fd7-835da935584f
   "requiresCustomScript": false,
   "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
-  "supportsThemeVariants": true,
 
+  // Uses the Fieldnotes brand colours rather than the section's theme colours.
+  "supportsThemeVariants": false,
+
+  // Lets authors place the board in a full-width section.
+  "supportsFullBleed": true,
+
+  // Two entries in the toolbox from one web part: the full board and the snapshot.
   "preconfiguredEntries": [{
-    "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Advanced
-    "group": { "default": "Advanced" },
-    "title": { "default": "Shipment Tracker" },
-    "description": { "default": "Tracks consignments and their delivery status" },
-    "officeFabricIconFontName": "DeliveryTruck",
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
+    "title": { "default": "Dispatch Board" },
+    "description": { "default": "Every consignment and its delivery status, with filters and search" },
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMTMiIGhlaWdodD0iMTAiLz48cGF0aCBkPSJNMTYgMTBoM2wyIDN2NGgtNSIvPjxjaXJjbGUgY3g9IjciIGN5PSIxOCIgcj0iMS42Ii8+PGNpcmNsZSBjeD0iMTgiIGN5PSIxOCIgcj0iMS42Ii8+PC9nPjxyZWN0IHg9IjMxIiB5PSIzMSIgd2lkdGg9IjQiIGhlaWdodD0iNCIgZmlsbD0iI0ZGRDk1NyIvPjwvc3ZnPg==",
     "properties": {
-      "title": "Shipment Tracker",
+      "layout": "board",
+      "eyebrow": "",
+      "title": "Dispatch",
+      "accentWord": "board.",
+      "boardUrl": "",
+      "dataSource": "demo",
+      "listTitle": "Shipments"
+    }
+  }, {
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
+    "title": { "default": "Board Snapshot" },
+    "description": { "default": "Today at a glance: the board's counts and what needs a look, linking to the full board" },
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMyAyMWgxOE02IDE3di01TTExIDE3VjZNMTYgMTd2LTgiLz48L2c+PHJlY3QgeD0iMzEiIHk9IjMxIiB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjRkZEOTU3Ii8+PC9zdmc+",
+    "properties": {
+      "layout": "snapshot",
+      "eyebrow": "01 / Today at a glance",
+      "title": "The day so far.",
+      "accentWord": "",
+      "boardUrl": "",
       "dataSource": "demo",
       "listTitle": "Shipments"
     }

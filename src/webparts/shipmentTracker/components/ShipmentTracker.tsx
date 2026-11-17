@@ -1,21 +1,9 @@
 import * as React from 'react';
-import {
-  DetailsList,
-  DetailsListLayoutMode,
-  type IColumn,
-  MessageBar,
-  MessageBarType,
-  Pivot,
-  PivotItem,
-  SearchBox,
-  SelectionMode,
-  Spinner,
-  SpinnerSize
-} from '@fluentui/react';
 import styles from './ShipmentTracker.module.scss';
 import type { IShipmentTrackerProps } from './IShipmentTrackerProps';
-import { SHIPMENT_STATUSES, type IShipment, type ShipmentStatus } from '../models/IShipment';
-import { countByStatus, filterShipments, isLate, type StatusFilter } from '../utils/shipmentUtils';
+import { SHIPMENT_STATUSES, type ShipmentStatus } from '../models/IShipment';
+import { useShipments } from './useShipments';
+import { countByStatus, filterShipments, isLate, summariseBoard, type StatusFilter } from '../utils/shipmentUtils';
 
 const STATUS_CLASS: Record<ShipmentStatus, string> = {
   Booked: styles.booked,
@@ -24,145 +12,176 @@ const STATUS_CLASS: Record<ShipmentStatus, string> = {
   Exception: styles.exception
 };
 
+const FILTER_LABEL: Record<StatusFilter, string> = {
+  All: 'All consignments',
+  Booked: 'Booked',
+  'In transit': 'In transit',
+  Delivered: 'Delivered',
+  Exception: 'Exceptions',
+  Late: 'Running late'
+};
+
 function formatDate(iso: string): string {
   if (!iso) {
     return '';
   }
   const d = new Date(iso);
-  return isNaN(d.getTime()) ? iso : d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
+  return isNaN(d.getTime()) ? iso : d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
-const columns: IColumn[] = [
-  { key: 'reference', name: 'Reference', fieldName: 'reference', minWidth: 80, maxWidth: 100 },
-  { key: 'customer', name: 'Customer', fieldName: 'customer', minWidth: 110, maxWidth: 160, isResizable: true },
-  {
-    key: 'route',
-    name: 'Route',
-    minWidth: 160,
-    isResizable: true,
-    onRender: (s: IShipment) => (
-      <span>
-        {s.origin} <span aria-hidden="true">→</span>
-        <span className={styles.srOnly}> to </span> {s.destination}
-      </span>
-    )
-  },
-  { key: 'carrier', name: 'Carrier', fieldName: 'carrier', minWidth: 100, maxWidth: 140, isResizable: true },
-  {
-    key: 'status',
-    name: 'Status',
-    minWidth: 90,
-    maxWidth: 110,
-    onRender: (s: IShipment) => <span className={`${styles.pill} ${STATUS_CLASS[s.status]}`}>{s.status}</span>
-  },
-  {
-    key: 'eta',
-    name: 'ETA',
-    minWidth: 100,
-    maxWidth: 130,
-    onRender: (s: IShipment) => (
-      <span className={isLate(s) ? styles.late : undefined}>
-        {formatDate(s.eta)}
-        {isLate(s) && <span className={styles.lateTag}>Late</span>}
-      </span>
-    )
-  }
-];
+function pad(n: number): string {
+  return n < 10 ? `0${n}` : String(n);
+}
 
-const ShipmentTracker: React.FC<IShipmentTrackerProps> = ({ title, service, isDemo }) => {
-  const [shipments, setShipments] = React.useState<IShipment[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
-  const [error, setError] = React.useState<string | undefined>(undefined);
-  const [status, setStatus] = React.useState<StatusFilter>('All');
+function plural(n: number, one: string, many: string): string {
+  return `${n} ${n === 1 ? one : many}`;
+}
+
+let idCounter = 0;
+
+const ShipmentTracker: React.FC<IShipmentTrackerProps> = ({ title, accentWord, siteTitle, dateText, service, isDemo }) => {
+  const { shipments, loading, error } = useShipments(service);
+  const [filter, setFilter] = React.useState<StatusFilter>('All');
   const [query, setQuery] = React.useState<string>('');
-
-  React.useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-    setError(undefined);
-    service
-      .getShipments()
-      .then(
-        (items) => {
-          if (!cancelled) {
-            setShipments(items);
-            setLoading(false);
-          }
-        },
-        (e: Error) => {
-          if (!cancelled) {
-            setError(e.message);
-            setLoading(false);
-          }
-        }
-      );
-    return () => {
-      cancelled = true;
-    };
-  }, [service]);
+  const ids = React.useMemo(() => {
+    idCounter += 1;
+    return { title: `fn-board-title-${idCounter}`, search: `fn-board-search-${idCounter}` };
+  }, []);
 
   const counts = React.useMemo(() => countByStatus(shipments), [shipments]);
-  const visible = React.useMemo(() => filterShipments(shipments, status, query), [shipments, status, query]);
-  const lateCount = React.useMemo(() => shipments.filter((s) => isLate(s)).length, [shipments]);
+  const summary = React.useMemo(() => summariseBoard(shipments), [shipments]);
+  const visible = React.useMemo(() => filterShipments(shipments, filter, query), [shipments, filter, query]);
+
+  const lede =
+    summary.total === 0
+      ? 'Nothing on the board yet.'
+      : `${plural(summary.total, 'consignment', 'consignments')} on the board. ` +
+        (summary.needsLook === 0 ? 'Everything is on track.' : `${plural(summary.needsLook, 'needs', 'need')} a look.`);
+
+  const tiles: { key: StatusFilter; label: string; value: number; className: string }[] = [
+    ...SHIPMENT_STATUSES.map((s) => ({ key: s as StatusFilter, label: s, value: counts[s], className: STATUS_CLASS[s] })),
+    { key: 'Late', label: 'Running late', value: summary.late, className: styles.lateTile }
+  ];
+
+  const toggle = (key: StatusFilter): void => setFilter((current) => (current === key ? 'All' : key));
 
   return (
-    <section className={styles.shipmentTracker}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>{title}</h2>
-        {isDemo && <span className={styles.demoBadge}>Demo data</span>}
-      </header>
-
-      {error && <MessageBar messageBarType={MessageBarType.error}>{error}</MessageBar>}
-
-      {loading ? (
-        <Spinner size={SpinnerSize.large} label="Loading shipments…" />
-      ) : (
-        <>
-          <div className={styles.summary} role="list" aria-label="Shipment summary">
-            {SHIPMENT_STATUSES.map((s) => (
-              <div key={s} role="listitem" className={`${styles.tile} ${STATUS_CLASS[s]}`}>
-                <span className={styles.tileValue}>{counts[s]}</span>
-                <span className={styles.tileLabel}>{s}</span>
-              </div>
-            ))}
-            <div role="listitem" className={`${styles.tile} ${styles.lateTile}`}>
-              <span className={styles.tileValue}>{lateCount}</span>
-              <span className={styles.tileLabel}>Running late</span>
-            </div>
+    <section className={styles.board} aria-labelledby={ids.title}>
+      <div className={styles.band}>
+        <div className={styles.inner}>
+          <div className={styles.meta}>
+            <span>{siteTitle} / Operations</span>
+            <span>{isDemo ? `${dateText} · Demo data` : `${dateText} · Live`}</span>
           </div>
 
-          <div className={styles.toolbar}>
-            <Pivot
-              selectedKey={status}
-              onLinkClick={(item) => item && setStatus(item.props.itemKey as StatusFilter)}
-              headersOnly
-              aria-label="Filter by status"
-            >
-              <PivotItem itemKey="All" headerText="All" itemCount={shipments.length} />
-              {SHIPMENT_STATUSES.map((s) => (
-                <PivotItem key={s} itemKey={s} headerText={s} itemCount={counts[s]} />
+          <div className={styles.heading}>
+            <h2 id={ids.title} className={styles.title}>
+              {title}
+              {accentWord && <> <em className={styles.accent}>{accentWord}</em></>}
+            </h2>
+            <p className={styles.lede} aria-live="polite">
+              {loading ? 'Loading the board…' : error ? 'The board could not load.' : lede}
+            </p>
+          </div>
+
+          {!loading && !error && (
+            <div className={styles.tiles} role="group" aria-label="Filter by status">
+              {tiles.map((t) => (
+                <button
+                  key={t.key}
+                  type="button"
+                  className={`${styles.tile} ${t.className}`}
+                  aria-pressed={filter === t.key}
+                  onClick={() => toggle(t.key)}
+                >
+                  <span className={styles.tileValue}>{pad(t.value)}</span>
+                  <span className={styles.tileLabel}>{t.label}</span>
+                </button>
               ))}
-            </Pivot>
-            <SearchBox
-              className={styles.search}
-              placeholder="Search reference, customer, route…"
-              value={query}
-              onChange={(_, v) => setQuery(v ?? '')}
-            />
-          </div>
+            </div>
+          )}
+        </div>
+      </div>
 
-          <DetailsList
-            items={visible}
-            columns={columns}
-            selectionMode={SelectionMode.none}
-            layoutMode={DetailsListLayoutMode.justified}
-            getKey={(s: IShipment) => String(s.id)}
-            setKey="shipments"
-            ariaLabelForGrid="Shipments"
-          />
-          {visible.length === 0 && <p className={styles.empty}>No shipments match these filters.</p>}
-        </>
-      )}
+      <div className={`${styles.inner} ${styles.body}`}>
+        {error && (
+          <div className={styles.error} role="alert">
+            {error}
+          </div>
+        )}
+
+        {!loading && !error && (
+          <>
+            <div className={styles.toolbar}>
+              <div className={styles.showing}>
+                <span className={styles.showingLabel}>Showing</span>
+                <span>
+                  {FILTER_LABEL[filter]} · {visible.length} of {shipments.length}
+                </span>
+                {filter !== 'All' && (
+                  <button type="button" className={styles.clear} onClick={() => setFilter('All')}>
+                    Clear filter
+                  </button>
+                )}
+              </div>
+              <div className={styles.search}>
+                <label htmlFor={ids.search}>Search</label>
+                <input
+                  id={ids.search}
+                  type="search"
+                  placeholder="Reference, customer, route…"
+                  autoComplete="off"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className={styles.tableScroll}>
+              <table className={styles.table} aria-labelledby={ids.title}>
+                <thead>
+                  <tr>
+                    <th scope="col">Reference</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Route</th>
+                    <th scope="col">Carrier</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">ETA</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {visible.map((s) => {
+                    const late = isLate(s);
+                    return (
+                      <tr key={s.id}>
+                        <td className={styles.ref}>{s.reference}</td>
+                        <td>{s.customer}</td>
+                        <td>
+                          {s.origin}
+                          <span className={styles.arrow} aria-hidden="true">→</span>
+                          <span className={styles.srOnly}> to </span>
+                          {s.destination}
+                        </td>
+                        <td>{s.carrier}</td>
+                        <td>
+                          <span className={`${styles.chip} ${STATUS_CLASS[s.status]}`}>{s.status}</span>
+                        </td>
+                        <td className={late ? styles.late : undefined}>
+                          {formatDate(s.eta)}
+                          {late && <span className={styles.lateTag}>Late</span>}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              {visible.length === 0 && <p className={styles.empty}>No consignments match. Try another filter or search.</p>}
+            </div>
+
+            {isDemo && <p className={styles.foot}>Fictional demo data. All companies and consignments are made up.</p>}
+          </>
+        )}
+      </div>
     </section>
   );
 };

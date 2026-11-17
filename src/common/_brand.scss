@@ -1,0 +1,37 @@
+// Fieldnotes brand tokens, shared by every web part.
+// Green leads; yellow and pink are accents. Text on colour always passes 4.5:1.
+
+$green: #1e5b43;
+$green-tint: #dcebdf;
+$sage: #c9dcc8;
+$yellow: #ffd957;
+$yellow-deep: #ffd24a;
+$yellow-tint: #fff0b8;
+$pink: #f4a49c;
+$pink-tint: #fbd9d4;
+$cream: #f7f4ec;
+$paper: #fbfaf5;
+$navy: #1b2440;
+$grey: #4a5468;
+$line: #e3ded1;
+$alert: #b5432f;
+
+$sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+$serif: 'Instrument Serif', Georgia, serif;
+$mono: 'DM Mono', Consolas, monospace;
+
+$max-width: 1240px;
+
+@mixin label {
+  font-family: $mono;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@mixin focus-ring($colour: $yellow) {
+  &:focus-visible {
+    outline: 3px solid $colour;
+    outline-offset: 3px;
+  }
+}

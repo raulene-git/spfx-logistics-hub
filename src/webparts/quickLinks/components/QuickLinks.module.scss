@@ -1,0 +1,60 @@
+@use '../../../common/brand' as *;
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+
+  li:empty {
+    display: none;
+  }
+}
+
+.tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 60px;
+  padding: 14px 18px;
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid $line;
+  color: $navy !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  font-size: 15px;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  @include focus-ring($green);
+
+  &:hover {
+    border-color: $green;
+    transform: translateY(-1px);
+  }
+
+  &:hover .icon {
+    background: $green;
+    color: #fff;
+  }
+}
+
+.icon {
+  flex: none;
+  padding: 7px;
+  background: $green-tint;
+  color: $green;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.unlinked {
+  border-style: dashed;
+  border-color: $grey;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile { transition: none; }
+  .tile:hover { transform: none; }
+}

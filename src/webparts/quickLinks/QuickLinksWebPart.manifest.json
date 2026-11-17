@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "468f9718-2d52-441d-93be-661ee5f13e94",
+  "alias": "QuickLinksWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "SharePointFullPage", "TeamsTab"],
+  "supportsThemeVariants": false,
+  "supportsFullBleed": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
+    "title": { "default": "Fieldnotes Quick Links" },
+    "description": { "default": "Tiles with an icon and a label for the places people go every day" },
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTAgMTRhNCA0IDAgMDA1LjcgMGwzLTNhNCA0IDAgMDAtNS43LTUuN2wtMSAxIi8+PHBhdGggZD0iTTE0IDEwYTQgNCAwIDAwLTUuNyAwbC0zIDNhNCA0IDAgMDA1LjcgNS43bDEtMSIvPjwvZz48cmVjdCB4PSIzMSIgeT0iMzEiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNGRkQ5NTciLz48L3N2Zz4=",
+    "properties": {
+      "eyebrow": "02 / Quick links",
+      "title": "",
+      "accent": "",
+      "count": 6,
+      "newTab": false,
+      "links": [
+        { "text": "Dispatch board", "url": "", "icon": "truck" },
+        { "text": "Book leave", "url": "", "icon": "calendar" },
+        { "text": "IT help", "url": "", "icon": "monitor" },
+        { "text": "Policies", "url": "", "icon": "document" },
+        { "text": "Depot map", "url": "", "icon": "pin" },
+        { "text": "Who's who", "url": "", "icon": "people" }
+      ]
+    }
+  }]
+}
