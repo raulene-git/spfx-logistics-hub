@@ -1,0 +1,904 @@
+@use '../../../common/brand' as *;
+
+.root {
+  // Sizes follow the web part's width, not the window's.
+  container-type: inline-size;
+  width: 100%;
+  background: $cream;
+  color: $navy;
+  font-family: $sans;
+}
+
+.inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  box-sizing: border-box;
+}
+
+// ---------- Green band ----------
+
+.band {
+  background: $green;
+  color: #fff;
+
+  .inner {
+    padding-top: 28px;
+    padding-bottom: 40px;
+  }
+}
+
+.meta {
+  @include label;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding-top: 16px;
+  color: $green-tint;
+}
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 4px;
+  margin-top: 20px;
+}
+
+.switch {
+  min-height: 40px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  @include focus-ring;
+
+  &[aria-pressed='true'] {
+    background: $yellow;
+    border-color: $yellow;
+    color: $navy;
+  }
+}
+
+.switchNote {
+  @include label;
+  font-size: 11px;
+  margin-left: 12px;
+  color: $green-tint;
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 48px;
+  padding: 32px 0 36px;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(52px, 8.5cqi, 116px);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  color: #fff;
+}
+
+.accent {
+  position: relative;
+  display: inline-block;
+  font-family: $serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: $yellow;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 2%;
+    right: 6%;
+    bottom: -0.02em;
+    height: 0.12em;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M2 9 C 40 3, 90 2, 140 6 S 190 10, 198 5' fill='none' stroke='%23ffd957' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M20 12 C 70 7, 120 7, 180 10' fill='none' stroke='%23ffd957' stroke-width='1.6' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E")
+      no-repeat center / 100% 100%;
+  }
+}
+
+.lede {
+  margin: 0 0 0.4em;
+  max-width: 360px;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #e3efe6;
+  border-left: 3px solid $yellow;
+  padding-left: 16px;
+}
+
+// ---------- Template cards (requester view) ----------
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 190px;
+  padding: 20px 20px 22px;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  text-align: left;
+  color: $navy;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  @include focus-ring;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &[aria-pressed='true'] {
+    box-shadow: inset 0 0 0 3px $navy, 0 0 0 3px $yellow;
+  }
+}
+
+.cPink { background: $pink; }
+.cYellow { background: $yellow; }
+.cSage { background: $sage; }
+.cCream { background: $cream; }
+
+.cardType {
+  @include label;
+  font-size: 11px;
+}
+
+.cardName {
+  margin-top: auto;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+
+  em {
+    font-family: $serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+.cardBlurb {
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 260px;
+}
+
+.cardArrow {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+// ---------- Status tiles (IT view) ----------
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-height: 120px;
+  padding: 18px 20px;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  color: $navy;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  @include focus-ring;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &[aria-pressed='true'] {
+    box-shadow: inset 0 0 0 3px $navy, 0 0 0 3px $yellow;
+  }
+}
+
+.tileValue {
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.tileLabel {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+.tOpen { background: $cream; }
+.tProgress { background: $yellow; }
+.tResolved { background: $sage; }
+.tClosed { background: #fff; }
+.tUrgent { background: $navy; color: #fff; }
+
+// ---------- Body ----------
+
+.body {
+  padding-top: 32px;
+  padding-bottom: 44px;
+}
+
+.success {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding: 20px 24px;
+  background: #fff;
+  border-left: 6px solid $green;
+
+  p {
+    margin: 4px 0 0;
+    line-height: 1.5;
+    color: $grey;
+  }
+}
+
+.successRef {
+  font-family: $mono;
+  font-size: 15px;
+  padding: 6px 10px;
+  background: $green;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.successTitle {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+
+// ---------- Form ----------
+
+.formLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.form {
+  padding: 28px;
+  background: #fff;
+  border-top: 4px solid $navy;
+}
+
+.formHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+  margin-bottom: 24px;
+
+  .cardType {
+    flex-basis: 100%;
+    color: $grey;
+  }
+}
+
+.formTitle {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+
+  em {
+    font-family: $serif;
+    font-weight: 400;
+    color: $green;
+  }
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.wide {
+  grid-column: 1 / -1;
+}
+
+.fieldLabel {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.req {
+  color: $alert;
+}
+
+.hint {
+  font-size: 13px;
+  color: $grey;
+}
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  border: 1px solid #b9b3a3;
+  border-radius: 0;
+  background: $paper;
+  font: inherit;
+  font-size: 15px;
+  color: $navy;
+
+  &:focus {
+    outline: 3px solid $yellow;
+    outline-offset: 0;
+    border-color: $navy;
+  }
+
+  &[aria-invalid='true'] {
+    border-color: $alert;
+  }
+}
+
+textarea.input {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #b9b3a3;
+  background: $paper;
+  font-size: 14px;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  &:focus-within {
+    outline: 3px solid $yellow;
+    outline-offset: 2px;
+  }
+}
+
+.pillOn {
+  background: $green;
+  border-color: $green;
+  color: #fff;
+  font-weight: 600;
+}
+
+.fieldError {
+  font-size: 13px;
+  font-weight: 600;
+  color: $alert;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-top: 28px;
+}
+
+.primary {
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  background: $green;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  @include focus-ring;
+
+  &:hover:not(:disabled) {
+    background: #174a36;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: default;
+  }
+}
+
+.linkButton {
+  min-height: 32px;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid $navy;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: $navy;
+  cursor: pointer;
+  @include focus-ring($green);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.aside {
+  align-self: start;
+  padding: 24px;
+  background: $green-tint;
+}
+
+.asideTitle {
+  @include label;
+  margin: 0 0 16px;
+  font-weight: 400;
+}
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(30, 91, 67, 0.25);
+    font-size: 15px;
+    line-height: 1.45;
+  }
+}
+
+.stepNum {
+  font-family: $mono;
+  font-size: 13px;
+  color: $green;
+  padding-top: 2px;
+}
+
+// ---------- My tickets and shared table ----------
+
+.section {
+  margin-top: 8px;
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 15px;
+
+  th {
+    @include label;
+    font-size: 11px;
+    font-weight: 400;
+    text-align: left;
+    color: $grey;
+    padding: 10px 16px 10px 0;
+    border-bottom: 2px solid $navy;
+  }
+
+  td {
+    padding: 14px 16px 14px 0;
+    border-bottom: 1px solid $line;
+    vertical-align: middle;
+  }
+}
+
+.ref {
+  font-family: $mono;
+  font-size: 13px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: $navy;
+}
+
+.sOpen { background: #fff; box-shadow: inset 0 0 0 1px $navy; }
+.sProgress { background: $yellow; }
+.sResolved { background: $green; color: #fff; }
+.sClosed { background: $line; color: $grey; }
+
+.pCritical { background: $alert; color: #fff; }
+.pHigh { background: $pink; }
+.pMedium { background: $yellow-tint; }
+.pLow { background: transparent; box-shadow: inset 0 0 0 1px #b9b3a3; color: $grey; }
+
+// ---------- Queue (IT view) ----------
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+  margin-bottom: 16px;
+}
+
+.showing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  font-size: 16px;
+  font-weight: 600;
+
+  .linkButton {
+    margin-left: 0;
+  }
+}
+
+.showingLabel {
+  @include label;
+  font-weight: 400;
+  color: $grey;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 1 320px;
+  min-width: 0;
+  border-bottom: 2px solid $navy;
+
+  label {
+    @include label;
+    font-size: 11px;
+    color: $grey;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    min-height: 40px;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 15px;
+    color: $navy;
+    outline: none;
+  }
+
+  &:focus-within {
+    border-bottom-color: $green;
+  }
+}
+
+.queue {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 2px solid $navy;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  border-bottom: 1px solid $line;
+  border-left: 4px solid transparent;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  color: $navy;
+  cursor: pointer;
+  @include focus-ring($green);
+
+  &:hover {
+    background: $paper;
+  }
+
+  &[aria-current='true'] {
+    background: #fff;
+    border-left-color: $green;
+  }
+}
+
+.rowTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.rowChips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.rowTitle {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.rowMeta {
+  font-size: 13px;
+  color: $grey;
+}
+
+.detail {
+  position: sticky;
+  top: 16px;
+  padding: 24px;
+  background: #fff;
+  border-top: 4px solid $green;
+}
+
+.detailEmpty {
+  margin: 0;
+  padding: 24px 0;
+  color: $grey;
+  line-height: 1.5;
+}
+
+.detailHead {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  .ref {
+    color: $grey;
+  }
+}
+
+.detailTitle {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.dl {
+  display: grid;
+  grid-template-columns: minmax(110px, auto) 1fr;
+  gap: 8px 16px;
+  margin: 0 0 16px;
+  font-size: 14px;
+
+  dt {
+    @include label;
+    font-size: 11px;
+    color: $grey;
+    padding-top: 2px;
+  }
+
+  dd {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    align-items: baseline;
+    margin: 0;
+
+    .linkButton {
+      margin-left: 0;
+      min-height: 24px;
+      font-size: 13px;
+    }
+  }
+}
+
+.desc {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  background: $cream;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.statusGroup {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 20px;
+  border: 1px solid $navy;
+}
+
+.statusBtn {
+  min-height: 40px;
+  padding: 0 6px;
+  border: 0;
+  border-right: 1px solid $navy;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: $navy;
+  cursor: pointer;
+  @include focus-ring($green);
+
+  &:last-child {
+    border-right: 0;
+  }
+
+  &[aria-pressed='true'] {
+    background: $navy;
+    color: #fff;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.worklogTitle {
+  @include label;
+  margin: 0 0 8px;
+  font-weight: 400;
+  color: $grey;
+}
+
+.worklog {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+  border-left: 2px solid $sage;
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 0 8px 14px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.logMeta {
+  font-size: 12px;
+  color: $grey;
+}
+
+.noteBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+// ---------- States ----------
+
+.empty {
+  padding: 16px 0;
+  margin: 0;
+  color: $grey;
+}
+
+.error {
+  margin: 12px 0;
+  padding: 14px 16px;
+  background: $pink-tint;
+  border-left: 4px solid $alert;
+}
+
+.foot {
+  @include label;
+  margin: 20px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: $grey;
+}
+
+// ---------- Narrower columns ----------
+
+@container (max-width: 1000px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .formLayout { grid-template-columns: 1fr; }
+  .queue { grid-template-columns: 1fr; }
+  .detail { position: static; }
+}
+
+@container (max-width: 900px) {
+  .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@container (max-width: 560px) {
+  .inner { padding-left: 20px; padding-right: 20px; }
+  .cards { grid-template-columns: 1fr; }
+  .card { min-height: 0; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tile { min-height: 96px; }
+  .tileValue { font-size: 36px; }
+  .fields { grid-template-columns: 1fr; }
+  .form { padding: 20px; }
+  .statusGroup { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .tile { transition: none; }
+  .card:hover, .tile:hover { transform: none; }
+}

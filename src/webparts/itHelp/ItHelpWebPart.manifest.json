@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "5b0f3c8e-2d47-4a1e-9c63-8f7e2a4d91b6",
+  "alias": "ItHelpWebPart",
+  "componentType": "WebPart",
+  "version": "*",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart", "TeamsPersonalApp", "TeamsTab", "SharePointFullPage"],
+
+  // Uses the Fieldnotes brand colours rather than the section's theme colours.
+  "supportsThemeVariants": false,
+
+  // Built as a full-width hero.
+  "supportsFullBleed": true,
+
+  "preconfiguredEntries": [{
+    "groupId": "aec813ce-7240-4750-9bbd-55ddfb138d5a",
+    "group": { "default": "Fieldnotes" },
+    "title": { "default": "IT Help" },
+    "description": { "default": "Raise an IT ticket from a template. IT staff also get the whole queue, with statuses and worklogs" },
+    "iconImageUrl": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI5IiBmaWxsPSIjMUU1QjQzIi8+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOCA4KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRjdGNEVDIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNNCAxNHYtMmE4IDggMCAwMTE2IDB2MiIvPjxyZWN0IHg9IjMiIHk9IjE0IiB3aWR0aD0iNCIgaGVpZ2h0PSI2IiByeD0iMSIvPjxyZWN0IHg9IjE3IiB5PSIxNCIgd2lkdGg9IjQiIGhlaWdodD0iNiIgcng9IjEiLz48cGF0aCBkPSJNMTkgMjBjMCAxLjUtMiAyLTUgMiIvPjwvZz48cmVjdCB4PSIzMSIgeT0iMzEiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNGRkQ5NTciLz48L3N2Zz4=",
+    "properties": {
+      "title": "How can we",
+      "accent": "help?",
+      "lede": "Tell us what’s broken or what you need. Pick the closest option and we’ll take it from there.",
+      "promise": "Someone will pick it up within one working day.",
+      "dataSource": "demo",
+      "ticketList": "IT Tickets",
+      "worklogList": "IT Worklogs"
+    }
+  }]
+}

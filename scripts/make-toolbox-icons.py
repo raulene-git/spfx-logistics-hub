@@ -25,6 +25,7 @@ GLYPHS = {
     "sayhello": '<circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M18 8v6M15 11h6"/>',
     "dispatch": '<rect x="3" y="7" width="13" height="10"/><path d="M16 10h3l2 3v4h-5"/><circle cx="7" cy="18" r="1.6"/><circle cx="18" cy="18" r="1.6"/>',
     "snapshot": '<path d="M3 21h18M6 17v-5M11 17V6M16 17v-8"/>',
+    "ithelp": '<path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="14" width="4" height="6" rx="1"/><rect x="17" y="14" width="4" height="6" rx="1"/><path d="M19 20c0 1.5-2 2-5 2"/>',
     "importer": '<path d="M6 3h9l4 4v14H6z"/><path d="M12 18v-7M9.5 13.5L12 11l2.5 2.5"/>',
 }
 
@@ -40,6 +41,7 @@ BY_FLUENT_NAME = {
     "DeliveryTruck": "dispatch",
     "Dashboard": "snapshot",
     "ExcelDocument": "importer",
+    "Headset": "ithelp",
 }
 
 
